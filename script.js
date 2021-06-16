@@ -89,7 +89,7 @@ function render(data) {
         <p>Win Rate: ${data.data.stats.all.overall.winRate} </p>
         <p>Horas Jogadas: ${Math.round((data.data.stats.all.overall.minutesPlayed) / 60)}</p>
 
-        <p>K/D: 5.6</p>
+        <p>K/D: ${data.data.stats.all.overall.kd}</p>
 
     </div>
     `
