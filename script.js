@@ -24,12 +24,11 @@ async function getUserProfile(user) {
         data = await response.json()
 
         if (data.status === 404) {
-            sectionRender.innerHTML = ''
+            createMessage('Ops! I think you did something wrong 🤔')
 
-            const msg = document.createElement('p')
-            msg.classList.add('msg')
-            msg.innerHTML = 'Ops! I think you did something wrong 🤔'
-            sectionRender.appendChild(msg)
+        } else if (data.status === 403) {
+            createMessage('Private account. F 😔')
+
         } else {
             if (!(data.data.account.name == nick)) {
                 render(data)
@@ -98,4 +97,14 @@ function render(data) {
     localStorage.setItem('nick', data.data.account.name)
     nick = data.data.account.name
 
+}
+
+
+function createMessage(message) {
+    sectionRender.innerHTML = ''
+
+    const msg = document.createElement('p')
+    msg.classList.add('msg')
+    msg.innerHTML = message
+    sectionRender.appendChild(msg)
 }
